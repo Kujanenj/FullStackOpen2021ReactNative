@@ -11,15 +11,19 @@ const styles = StyleSheet.create({
   },
   flexContainer: {
     display: "flex",
+    flexDirection: "row",
     paddingTop: Constants.statusBarHeight,
     backgroundColor: theme.colors.appBarBackground,
+  },
+  flexItem: {
+    flexGrow: 1,
   },
 });
 
 const AppBar = () => {
   return (
     <View style={styles.flexContainer}>
-      <Pressable onPress={() => console.log("press")}>
+      <Pressable onPress={() => console.log("ress")}>
         <AppBarTab></AppBarTab>
       </Pressable>
     </View>
