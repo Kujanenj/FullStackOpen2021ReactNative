@@ -1,7 +1,16 @@
 import React from "react";
-import { Text, TextInput, StyleSheet, Pressable, View ,Button} from "react-native";
+import {
+  Text,
+  TextInput,
+  StyleSheet,
+  Pressable,
+  View,
+  Button,
+} from "react-native";
 import { Formik, useField } from "formik";
 import FormikTextInput from "./FormikTextInput";
+
+import * as yup from "yup";
 
 const styles = StyleSheet.create({
   flexContainer: {
@@ -14,16 +23,24 @@ const styles = StyleSheet.create({
   },
 });
 const initialValues = {
-  username: "username",
-  password: "paas",
+  username: "",
+  password: "",
 };
 
-const SignInForm = ({ onSubmit }) => {
+const validationSchema = yup.object().shape({
+  username: yup.string().required("Username is required"),
+  password: yup.string().required("Password is required"),
+});
+
+const SignInForm = ({ onSubmit,errors}) => {
+  console.log("Sign in form errors -->")
+  console.log(!(Object.keys(errors).length===0))
+  console.log("---")
   return (
     <View style={styles.flexContainer}>
       <FormikTextInput name="username" placeholder="Username" />
       <FormikTextInput name="password" placeholder="Password" />
-      <Button onPress={onSubmit} title="Submit" />
+      <Button onPress={onSubmit} title="Submit" disabled={!(Object.keys(errors).length===0)} />
     </View>
   );
 };
@@ -36,8 +53,13 @@ const SignIn = () => {
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit}>
-      {({ handleSubmit }) => <SignInForm onSubmit={handleSubmit} />}
+    <Formik
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      validationSchema={validationSchema}
+      
+    >
+      {({ handleSubmit,errors }) => <SignInForm onSubmit={handleSubmit} errors={errors} />}
     </Formik>
   );
 };
