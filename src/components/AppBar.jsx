@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Pressable } from "react-native";
+import { View, StyleSheet, Pressable, ScrollView } from "react-native";
 import Constants from "expo-constants";
 import Text from "./Text";
 import theme from "../theme";
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: theme.colors.appBarBackground,
+    backgroundColor: theme.colors.testColor,
   },
   flexItem: {
     flexGrow: 1,
@@ -24,7 +24,9 @@ const AppBar = () => {
   return (
     <View style={styles.flexContainer}>
       <Pressable onPress={() => console.log("ress")}>
-        <AppBarTab></AppBarTab>
+        <ScrollView horizontal>
+          <AppBarTab></AppBarTab>
+        </ScrollView>
       </Pressable>
     </View>
   );

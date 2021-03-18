@@ -7,17 +7,17 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    padding:10
+    padding: 10,
   },
   flexItem: {
     flexGrow: 1,
-    padding:10
+    padding: 10,
   },
 });
 
 const AppBarTab = () => {
   return (
-    <View style={styles.flexContainer} >
+    <View style={styles.flexContainer}>
       <View style={styles.flexItem}>
         <Link to="/repositories">
           <Text fontWeight="bold" color="textSecondary">
