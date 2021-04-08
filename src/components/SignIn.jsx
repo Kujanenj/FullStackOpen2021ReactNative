@@ -33,9 +33,6 @@ const validationSchema = yup.object().shape({
 });
 
 const SignInForm = ({ onSubmit,errors}) => {
-  console.log("Sign in form errors -->")
-  console.log(!(Object.keys(errors).length===0))
-  console.log("---")
   return (
     <View style={styles.flexContainer}>
       <FormikTextInput name="username" placeholder="Username" />
@@ -49,7 +46,6 @@ const SignIn = () => {
   const onSubmit = (values) => {
     const username = values.username;
     const password = values.password;
-    console.log(username + password);
   };
 
   return (
