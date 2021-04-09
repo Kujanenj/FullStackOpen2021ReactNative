@@ -1,9 +1,13 @@
 import React from "react";
 import { View, StyleSheet, Pressable, ScrollView } from "react-native";
+import useAuthStorage from "../hooks/useAuthStorage";
+import { gql, useQuery } from "@apollo/client";
 import Constants from "expo-constants";
 import Text from "./Text";
 import theme from "../theme";
 import AppBarTab from "./AppBarTab";
+import useAuthUser from "../hooks/useAuthUser";
+import { AUTHORIZED_USER } from "../graphql/queries";
 const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight,
@@ -21,11 +25,21 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
+  const { data, loading } = useQuery(AUTHORIZED_USER);
+  if (loading) {
+    return <View></View>;
+  }
+  console.log("Auth user in component");
+  console.log(data);
+  console.log(data.authorizedUser)
+  console.log("Is it null?");
+  console.log(data.authorizedUser == null);
+  console.log(!!data.authorizedUser)
   return (
     <View style={styles.flexContainer}>
       <Pressable onPress={() => console.log("ress")}>
         <ScrollView horizontal>
-          <AppBarTab></AppBarTab>
+          <AppBarTab loggedIn={!!data.authorizedUser}></AppBarTab>
         </ScrollView>
       </Pressable>
     </View>

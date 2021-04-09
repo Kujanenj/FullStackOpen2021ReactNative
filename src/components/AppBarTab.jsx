@@ -1,6 +1,7 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Pressable } from "react-native";
 import { Link } from "react-router-native";
+import useLogOut from "../hooks/useLogOut";
 import Text from "./Text";
 const styles = StyleSheet.create({
   flexContainer: {
@@ -15,7 +16,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const AppBarTab = () => {
+const AppBarTab = ({ loggedIn }) => {
+  const logOut = useLogOut();
+  console.log("App bar tab");
+  console.log(loggedIn);
   return (
     <View style={styles.flexContainer}>
       <View style={styles.flexItem}>
@@ -26,11 +30,19 @@ const AppBarTab = () => {
         </Link>
       </View>
       <View style={styles.flexItem}>
-        <Link to="/login">
-          <Text fontWeight="bold" color="textSecondary">
-            Login
-          </Text>
-        </Link>
+        {!!loggedIn ? (
+          <Pressable onPress={() => logOut()}>
+            <Text fontWeight="bold" color="textSecondary">
+              LogOut
+            </Text>
+          </Pressable>
+        ) : (
+          <Link to="/login">
+            <Text fontWeight="bold" color="textSecondary">
+              Login
+            </Text>
+          </Link>
+        )}
       </View>
     </View>
   );

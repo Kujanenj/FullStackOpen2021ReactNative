@@ -1,14 +1,10 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  Button,
-} from "react-native";
-import { Formik, useField } from "formik";
+import { StyleSheet, View, Button } from "react-native";
+import { Formik } from "formik";
 import FormikTextInput from "./FormikTextInput";
 import useSignIn from "../hooks/useSignIn";
-import AuthStorage from '../utils/authStorage'
 import * as yup from "yup";
+import { useHistory } from "react-router-native";
 
 const styles = StyleSheet.create({
   flexContainer: {
@@ -45,13 +41,15 @@ const SignInForm = ({ onSubmit, errors }) => {
 };
 
 const SignIn = () => {
+  let history = useHistory();
+
   const [signIn] = useSignIn();
   const onSubmit = async (values) => {
     const { username, password } = values;
     try {
-      const data = await signIn({ username,password});
+      const data = await signIn({ username, password });
+      history.push("/repositories");
     } catch (e) {
-      console.log("Soemthing wrong");
       console.log(e);
     }
   };

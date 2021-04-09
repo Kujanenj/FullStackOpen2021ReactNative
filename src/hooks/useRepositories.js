@@ -5,11 +5,11 @@ import { GET_REPOSITORIES } from "../graphql/queries";
 
 const useRepositories = () => {
   const [repositories, setRepositories] = useState();
-  //   const [loading, setLoading] = useState(false);
   const { data, error, loading } = useQuery(GET_REPOSITORIES, {
     fetchPolicy: "cache-and-network",
   });
   useEffect(() => {
+    console.log("Repos firing")
     if (data) {
       setRepositories(data.repositories);
     }
