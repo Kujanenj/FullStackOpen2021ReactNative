@@ -18,8 +18,6 @@ const styles = StyleSheet.create({
 
 const AppBarTab = ({ loggedIn }) => {
   const logOut = useLogOut();
-  console.log("App bar tab");
-  console.log(loggedIn);
   return (
     <View style={styles.flexContainer}>
       <View style={styles.flexItem}>

@@ -26,12 +26,6 @@ const AppBar = () => {
   if (loading) {
     return <View></View>;
   }
-  console.log("Auth user in component");
-  console.log(data);
-  console.log(data.authorizedUser)
-  console.log("Is it null?");
-  console.log(data.authorizedUser == null);
-  console.log(!!data.authorizedUser)
   return (
     <View style={styles.flexContainer}>
       <Pressable onPress={() => console.log("ress")}>

@@ -1,12 +1,14 @@
 import React from "react";
 import { View, Image, StyleSheet, Button } from "react-native";
 import Text from "./Text";
+import * as Linking from "expo-linking";
+import * as WebBrowser from 'expo-web-browser';
 const styles = StyleSheet.create({
   flexContainer: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    padding:10
+    padding: 10,
   },
   flexItem: {
     flexGrow: 1,
@@ -26,7 +28,7 @@ const styles = StyleSheet.create({
     paddingLeft: 50,
   },
 });
-const LineItem = ({ text, value,testID }) => {
+const LineItem = ({ text, value, testID }) => {
   let copyValue = value;
   if (!isNaN(copyValue)) {
     if (copyValue > 1000) {
@@ -36,12 +38,14 @@ const LineItem = ({ text, value,testID }) => {
 
   return (
     <View style={styles.flexItem}>
-      <Text fontWeight="bold" testID={testID}>{copyValue}</Text>
+      <Text fontWeight="bold" testID={testID}>
+        {copyValue}
+      </Text>
       <Text>{text}</Text>
     </View>
   );
 };
-const RepositoryItem = ({ item }) => (
+const RepositoryItem = ({ item, isSingle = false }) => (
   <View>
     <View style={styles.flexContainer}>
       <Image
@@ -50,19 +54,45 @@ const RepositoryItem = ({ item }) => (
           uri: item.ownerAvatarUrl,
         }}
       ></Image>
-      <LineItem text={item.description} value={item.fullName} testID="fullName"></LineItem>
+      <LineItem
+        text={item.description}
+        value={item.fullName}
+        testID="fullName"
+      ></LineItem>
     </View>
     <View style={styles.flexContainer}>
-    <View style={[styles.button]}>
-      <Button title={item.language} testID="language"></Button>
-    </View>
+      <View style={[styles.button]}>
+        <Button title={item.language} testID="language"></Button>
+      </View>
     </View>
     <View style={styles.flexContainer}>
-      <LineItem text={"Stars"} value={item.stargazersCount} testID="stargazersCount"></LineItem>
-      <LineItem text={"Reviews"} value={item.reviewCount} testID="reviewCount"></LineItem>
-      <LineItem text={"Forks"} value={item.forksCount} testID="forksCount"></LineItem>
-      <LineItem text={"Rating"} value={item.ratingAverage} testID="ratingAverage"></LineItem>
+      <LineItem
+        text={"Stars"}
+        value={item.stargazersCount}
+        testID="stargazersCount"
+      ></LineItem>
+      <LineItem
+        text={"Reviews"}
+        value={item.reviewCount}
+        testID="reviewCount"
+      ></LineItem>
+      <LineItem
+        text={"Forks"}
+        value={item.forksCount}
+        testID="forksCount"
+      ></LineItem>
+      <LineItem
+        text={"Rating"}
+        value={item.ratingAverage}
+        testID="ratingAverage"
+      ></LineItem>
     </View>
+    {isSingle && (
+      <Button
+        title="View on GitHub"
+        onPress={() => WebBrowser.openBrowserAsync(item.url)}
+      ></Button>
+    )}
   </View>
 );
 export default RepositoryItem;

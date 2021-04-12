@@ -4,7 +4,6 @@ const useLogOut = () => {
   const authStorage = useAuthStorage();
   const client = useApolloClient();
   const logOut = async () => {
-    console.log("Log me the f out");
     await authStorage.removeAccessToken();
     client.resetStore();
   };

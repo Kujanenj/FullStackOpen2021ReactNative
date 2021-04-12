@@ -5,6 +5,7 @@ import theme from "../theme";
 import AppBar from "./AppBar";
 import RepositoryList from "./RepositoryList";
 import SignIn from "./SignIn";
+import SingleRepository from "./SingleRepository";
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
@@ -18,6 +19,9 @@ const Main = () => {
     <View style={styles.container}>
       <AppBar></AppBar>
       <Switch>
+        <Route path="/repositories/:id">
+          <SingleRepository></SingleRepository>
+        </Route>
         <Route path="/repositories" exact>
           <RepositoryList></RepositoryList>
         </Route>

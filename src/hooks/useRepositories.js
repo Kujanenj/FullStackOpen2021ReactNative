@@ -9,7 +9,6 @@ const useRepositories = () => {
     fetchPolicy: "cache-and-network",
   });
   useEffect(() => {
-    console.log("Repos firing")
     if (data) {
       setRepositories(data.repositories);
     }
