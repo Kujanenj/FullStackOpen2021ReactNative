@@ -1,12 +1,9 @@
 import React from "react";
 import { View, StyleSheet, Pressable, ScrollView } from "react-native";
-import useAuthStorage from "../hooks/useAuthStorage";
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import Constants from "expo-constants";
-import Text from "./Text";
 import theme from "../theme";
 import AppBarTab from "./AppBarTab";
-import useAuthUser from "../hooks/useAuthUser";
 import { AUTHORIZED_USER } from "../graphql/queries";
 const styles = StyleSheet.create({
   container: {
