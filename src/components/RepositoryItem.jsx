@@ -1,8 +1,7 @@
 import React from "react";
 import { View, Image, StyleSheet, Button } from "react-native";
-import Text from "./Text";
-import * as Linking from "expo-linking";
-import * as WebBrowser from 'expo-web-browser';
+import LineItem from "./LineItem";
+import * as WebBrowser from "expo-web-browser";
 const styles = StyleSheet.create({
   flexContainer: {
     display: "flex",
@@ -28,23 +27,7 @@ const styles = StyleSheet.create({
     paddingLeft: 50,
   },
 });
-const LineItem = ({ text, value, testID }) => {
-  let copyValue = value;
-  if (!isNaN(copyValue)) {
-    if (copyValue > 1000) {
-      copyValue = `${Math.round(value / 100) / 10}k`;
-    }
-  }
 
-  return (
-    <View style={styles.flexItem}>
-      <Text fontWeight="bold" testID={testID}>
-        {copyValue}
-      </Text>
-      <Text>{text}</Text>
-    </View>
-  );
-};
 const RepositoryItem = ({ item, isSingle = false }) => (
   <View>
     <View style={styles.flexContainer}>
