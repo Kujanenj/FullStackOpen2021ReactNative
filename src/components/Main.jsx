@@ -2,15 +2,16 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Route, Switch, Redirect } from "react-router-native";
 import theme from "../theme";
-import AppBar from "./AppBar";
-import RepositoryList from "./RepositoryList";
-import SignIn from "./SignIn";
-import SingleRepository from "./SingleRepository";
+import AppBar from "./AppBar/AppBar";
+import ReviewForm from "./Repositories/Reviews/ReviewForm";
+import RepositoryList from "./Repositories/RepositoryList";
+import SignIn from "./User/SignIn";
+import SingleRepository from "./Repositories/SingleRepository";
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     flexShrink: 1,
-    backgroundColor: theme.colors.mainBackground
+    backgroundColor: theme.colors.mainBackground,
   },
 });
 
@@ -19,6 +20,9 @@ const Main = () => {
     <View style={styles.container}>
       <AppBar></AppBar>
       <Switch>
+        <Route path="/reviews/create">
+          <ReviewForm></ReviewForm>
+        </Route>
         <Route path="/repositories/:id">
           <SingleRepository></SingleRepository>
         </Route>

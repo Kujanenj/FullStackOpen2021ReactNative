@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import { useQuery } from "@apollo/client";
-import { GET_REPOSITORY_BY_ID } from "../graphql/queries";
+import { GET_REPOSITORY_BY_ID } from "../../graphql/queries";
 import { useParams } from "react-router-native";
 import RepositoryItem from "./RepositoryItem";
 import LineItem from "./LineItem";
@@ -47,7 +47,7 @@ const ReviewItem = ({ review }) => {
   return (
     <View style={styles.flexContainer}>
       <View>
-        <Text style={[styles.flexItem,styles.score]}>{review.rating}</Text>
+        <Text style={[styles.flexItem, styles.score]}>{review.rating}</Text>
       </View>
       <View style={[styles.flexContainer, styles.flexContainerColumn]}>
         <LineItem

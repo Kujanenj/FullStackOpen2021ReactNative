@@ -1,8 +1,8 @@
 import React from "react";
 import { View, StyleSheet, Pressable } from "react-native";
 import { Link } from "react-router-native";
-import useLogOut from "../hooks/useLogOut";
-import Text from "./Text";
+import useLogOut from "../../hooks/useLogOut";
+import Text from "../Texts/Text";
 const styles = StyleSheet.create({
   flexContainer: {
     display: "flex",
@@ -24,6 +24,13 @@ const AppBarTab = ({ loggedIn }) => {
         <Link to="/repositories">
           <Text fontWeight="bold" color="textSecondary">
             Repositories
+          </Text>
+        </Link>
+      </View>
+      <View style={styles.flexItem}>
+        <Link to="/reviews/create">
+          <Text fontWeight="bold" color="textSecondary">
+            Create a fooking review
           </Text>
         </Link>
       </View>

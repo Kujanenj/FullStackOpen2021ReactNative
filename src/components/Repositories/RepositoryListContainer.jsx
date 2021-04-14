@@ -1,9 +1,9 @@
 import React from "react";
 import { FlatList, View, StyleSheet, Pressable } from "react-native";
 import { useHistory } from "react-router";
-import theme from "../theme";
+import theme from "../../theme";
 import RepositoryItem from "./RepositoryItem";
-import Text from "./Text";
+import Text from "../Texts/Text";
 const styles = StyleSheet.create({
   separator: {
     height: 10,

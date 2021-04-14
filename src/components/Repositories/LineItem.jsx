@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import Text from "./Text";
+import Text from "../Texts/Text";
 const styles = StyleSheet.create({
   flexItem: {
     flexGrow: 1,
