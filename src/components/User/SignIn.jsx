@@ -22,7 +22,7 @@ const SignIn = () => {
   const onSubmit = async (values) => {
     const { username, password } = values;
     try {
-      const data = await signIn({ username, password });
+      const data = await signIn( username, password );
       history.push("/repositories");
     } catch (e) {
       console.log(e);

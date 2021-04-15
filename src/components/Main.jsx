@@ -7,6 +7,7 @@ import ReviewForm from "./Repositories/Reviews/ReviewForm";
 import RepositoryList from "./Repositories/RepositoryList";
 import SignIn from "./User/SignIn";
 import SingleRepository from "./Repositories/SingleRepository";
+import CreateUserForm from "./User/CreateUserForm";
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
@@ -29,10 +30,13 @@ const Main = () => {
         <Route path="/repositories" exact>
           <RepositoryList></RepositoryList>
         </Route>
-        <Route path="/login" exact>
+        <Route path="/user/create">
+          <CreateUserForm></CreateUserForm>
+        </Route>
+        <Route path="/user/login" exact>
           <SignIn></SignIn>
         </Route>
-        <Redirect to="/login"></Redirect>
+        <Redirect to="/user/login"></Redirect>
       </Switch>
     </View>
   );

@@ -42,11 +42,18 @@ const AppBarTab = ({ loggedIn }) => {
             </Text>
           </Pressable>
         ) : (
-          <Link to="/login">
-            <Text fontWeight="bold" color="textSecondary">
-              Login
-            </Text>
-          </Link>
+          <View>
+            <Link to="/user/login">
+              <Text fontWeight="bold" color="textSecondary">
+                Login
+              </Text>
+            </Link>
+            <Link to="/user/create">
+              <Text fontWeight="bold" color="textSecondary">
+                Create User
+              </Text>
+            </Link>
+          </View>
         )}
       </View>
     </View>
