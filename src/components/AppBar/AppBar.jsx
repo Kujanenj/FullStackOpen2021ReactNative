@@ -28,7 +28,7 @@ const AppBar = () => {
   }
   return (
     <View style={styles.flexContainer}>
-      <Pressable onPress={() => console.log("ress")}>
+      <Pressable >
         <ScrollView horizontal>
           <AppBarTab loggedIn={!!data.authorizedUser}></AppBarTab>
         </ScrollView>

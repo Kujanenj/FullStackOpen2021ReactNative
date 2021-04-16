@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FlatList, View, StyleSheet, Pressable } from "react-native";
-import { useHistory } from "react-router";
+import TextInput from "../Texts/TextInput";
 import theme from "../../theme";
 import RepositoryItem from "./RepositoryItem";
 import Text from "../Texts/Text";
@@ -17,50 +17,54 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const RepositoryListContainer = ({
-  repositories,
-  loading,
-  orderBy,
-  setOrderBy,
-}) => {
-  let history = useHistory();
-
-  // Get the nodes from the edges array
-  const repositoryNodes = repositories
-    ? repositories.edges.map((edge) => edge.node)
-    : [];
-
-  if (loading) {
+export class RepositoryListContainer extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  renderHeader = () => {
     return (
       <View>
-        <Text>Loading</Text>
+        <TextInput
+          placeholder="Filter.."
+          value={this.props.filter}
+          onChangeText={this.props.setFilter}
+        ></TextInput>
+        <Picker
+          selectedValue={this.props.orderBy}
+          onValueChange={(itemValue, itemIndex) => {
+            this.props.setOrderBy(itemValue);
+          }}
+        >
+          <Picker.Item label="Date" value="CREATED" />
+          <Picker.Item label="Rating_higest" value="RATING_D" />
+          <Picker.Item label="Rating lowest" value="RATING_A"></Picker.Item>
+        </Picker>
+      </View>
+    );
+  };
+  render() {
+    return (
+      <View style={styles.container}>
+        <FlatList
+          data={
+            this.props.repositories
+              ? this.props.repositories.edges.map((edge) => edge.node)
+              : []
+          }
+          ItemSeparatorComponent={ItemSeparator}
+          renderItem={({ item }) => (
+            <Pressable
+              onPress={() => this.props.history.push(`repositories/${item.id}`)}
+            >
+              <RepositoryItem item={item}></RepositoryItem>
+            </Pressable>
+          )}
+          ListHeaderComponent={this.renderHeader}
+        />
       </View>
     );
   }
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={repositoryNodes}
-        ItemSeparatorComponent={ItemSeparator}
-        renderItem={({ item }) => (
-          <Pressable onPress={() => history.push(`repositories/${item.id}`)}>
-            <RepositoryItem item={item}></RepositoryItem>
-          </Pressable>
-        )}
-        ListHeaderComponent={() => (
-          <Picker
-            selectedValue={orderBy}
-            onValueChange={(itemValue, itemIndex) => {
-              setOrderBy(itemValue);
-            }}
-          >
-            <Picker.Item label="Date" value="CREATED" />
-            <Picker.Item label="Rating_higest" value="RATING_D" />
-            <Picker.Item label="Rating lowest" value="RATING_A"></Picker.Item>
-          </Picker>
-        )}
-      />
-    </View>
-  );
-};
+}
+
+
 export default RepositoryListContainer;
