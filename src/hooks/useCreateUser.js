@@ -4,10 +4,7 @@ const useCreateUser = () => {
   const [mutate, result] = useMutation(CREATE_USER);
 
   const createUser = async ( username, password ) => {
-    console.log(username,password)
     const credentials = { username, password };
-    console.log(credentials)
-    console.log("'*****'")
     const { data } = await mutate({ variables: { credentials } });
     return data;
   };
