@@ -8,6 +8,7 @@ const RepositoryList = () => {
   const [orderBy, setOrderBy] = useState("CREATED");
   const [filter,setFilter] = useState("");
   const [debouncedFilter] = useDebounce(filter,1000)
+
   const { repositories, loading } = useRepositories(parseOrderBy(orderBy),debouncedFilter);
     let history = useHistory();
   return (
@@ -19,6 +20,7 @@ const RepositoryList = () => {
       filter={filter}
       setFilter={setFilter}
       history={history}
+      onEndReach={onEndReach}
     ></RepositoryListContainer>
   );
 };

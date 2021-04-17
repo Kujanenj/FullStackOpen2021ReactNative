@@ -60,11 +60,12 @@ export class RepositoryListContainer extends React.Component {
             </Pressable>
           )}
           ListHeaderComponent={this.renderHeader}
+          onEndReached={this.props.onEndReach}
+          onEndReachedThreshold={0.5}
         />
       </View>
     );
   }
 }
-
 
 export default RepositoryListContainer;
